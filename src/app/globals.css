@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'DM Serif Display';
+  --font-body:    'DM Sans';
+  --font-mono:    'DM Mono';
+
+  /* Brand palette */
+  --sage-50:   #f4f7f4;
+  --sage-100:  #e6ede6;
+  --sage-300:  #a5bfa5;
+  --sage-500:  #557a55;
+  --sage-700:  #354f35;
+  --sage-900:  #243424;
+
+  --sand-100:  #f3efe5;
+  --sand-300:  #d4c9a8;
+  --sand-500:  #a99160;
+  --sand-800:  #5e4d32;
+
+  /* Semantic tokens */
+  --bg:          #faf8f4;
+  --bg-card:     #ffffff;
+  --bg-subtle:   #f4f7f4;
+  --border:      #e6deca;
+  --border-sage: #ccdbcc;
+
+  --text-primary:   #1a2e1a;
+  --text-secondary: #4a6b4a;
+  --text-muted:     #7a967a;
+  --text-sand:      #5e4d32;
+
+  --accent:       #557a55;
+  --accent-light: #e6ede6;
+  --accent-dark:  #354f35;
+
+  --up:   #2d7a4f;
+  --down: #c0392b;
+  --flat: #7a967a;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.card-subtle {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-sage);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+/* ── Trend badges ───────────────────────────────────────────────────────── */
+
+.trend-up   { color: var(--up);   }
+.trend-down { color: var(--down); }
+.trend-flat { color: var(--flat); }
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover  { background: var(--accent-dark); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-sage);
+}
+
+/* ── Inputs ─────────────────────────────────────────────────────────────── */
+
+.input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(85, 122, 85, 0.12);
+}
+
+.input::placeholder { color: var(--text-muted); }
+
+/* ── Sidebar nav ────────────────────────────────────────────────────────── */
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+}
+
+.nav-item.active {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-weight: 500;
+}
+
+/* ── Metric pill ────────────────────────────────────────────────────────── */
+
+.metric-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--bg-subtle);
+  border-radius: 100px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
