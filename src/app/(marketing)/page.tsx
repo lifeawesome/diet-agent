@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ClientNamesPhrase } from '@/components/marketing/ClientNamesPhrase'
 
 export default function MarketingHomePage() {
   return (
@@ -22,8 +23,9 @@ export default function MarketingHomePage() {
         Health coaching that fits your plan
       </h1>
       <p style={{ fontSize: 17, color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '2rem' }}>
-        Log metrics and meals, track trends, chat with your coach, and stay aligned with your diet — on web
-        or mobile. Sign in with a paid subscription to use the full dashboard.
+        Track meals and metrics, see rolling averages and goals, and connect DietAgent with{' '}
+        <ClientNamesPhrase /> using MCP so your subscribed assistant can read your dashboard and log on your behalf.
+        Sign in with a paid subscription to use the full dashboard.
       </p>
       <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
         <Link href="/signup" className="btn-primary" style={{ textDecoration: 'none', padding: '0.65rem 1.5rem' }}>

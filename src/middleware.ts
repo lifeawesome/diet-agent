@@ -3,19 +3,14 @@ import { updateSession } from '@/lib/supabase/middleware'
 
 const PROTECTED_PREFIXES = [
   '/dashboard',
-  '/log',
-  '/meals',
-  '/trends',
-  '/chat',
-  '/progress',
+  '/connect',
+  '/connections',
   '/settings',
   '/billing',
 ]
 
 function isProtectedPath(pathname: string): boolean {
-  return PROTECTED_PREFIXES.some(
-    p => pathname === p || pathname.startsWith(`${p}/`)
-  )
+  return PROTECTED_PREFIXES.some(p => pathname === p || pathname.startsWith(`${p}/`))
 }
 
 export async function middleware(request: NextRequest) {
@@ -24,14 +19,15 @@ export async function middleware(request: NextRequest) {
   if (isProtectedPath(request.nextUrl.pathname) && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
-    url.searchParams.set('redirect', request.nextUrl.pathname + request.nextUrl.search)
+    const returnPath = request.nextUrl.pathname + request.nextUrl.search
+    url.searchParams.set('return_to', returnPath)
+    url.searchParams.set('redirect', returnPath)
     return NextResponse.redirect(url)
   }
 
   return response
 }
 
-/** Refresh Supabase cookies on navigations; protect app routes below. */
 export const config = {
   matcher: [
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
