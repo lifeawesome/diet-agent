@@ -2,6 +2,12 @@
 
 Web dashboard for DietAgent accounts: MCP connector setup (`/connect`), dashboard metrics, OAuth consent, billing, settings.
 
+This app targets **Next.js 16** (`next@16`). Auth and session refresh run in **`src/proxy.ts`** (the former `middleware.ts` convention). The build output lists this as **Proxy (Middleware)**.
+
+### Linting
+
+Next.js 16 no longer ships the `next lint` CLI. This repo uses **ESLint 9** with `eslint.config.mjs` and `npm run lint` / `pnpm run lint` runs `eslint .`.
+
 ## Environment
 
 Copy `.env.local.example` to `.env.local` and fill in Supabase publishable credentials and optional `NEXT_PUBLIC_API_URL` when pointing at a local API.

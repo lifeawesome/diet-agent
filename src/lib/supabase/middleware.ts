@@ -2,6 +2,7 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { getSupabasePublishableKey } from '@/lib/supabase/publishable-key'
 
+/** Shared cookie refresh + user lookup for `src/proxy.ts` (Next.js 16 proxy convention). */
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
