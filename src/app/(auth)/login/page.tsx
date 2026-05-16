@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Suspense, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { navigateAfterAuth } from '@/lib/navigate-after-auth'
 
 function LoginForm() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const redirectTo =
     searchParams.get('return_to') ??
@@ -28,22 +28,7 @@ function LoginForm() {
         setError(err.message)
         return
       }
-      const trimmed = redirectTo.trim()
-      if (/^https?:\/\//i.test(trimmed)) {
-        try {
-          const dest = new URL(trimmed)
-          if (dest.origin !== window.location.origin) {
-            window.location.assign(trimmed)
-            return
-          }
-          router.push(`${dest.pathname}${dest.search}${dest.hash}`)
-        } catch {
-          router.push('/dashboard')
-        }
-      } else {
-        router.push(trimmed.startsWith('/') ? trimmed : `/${trimmed}`)
-      }
-      router.refresh()
+      navigateAfterAuth(redirectTo)
     } finally {
       setLoading(false)
     }

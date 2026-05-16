@@ -4,6 +4,8 @@ Web dashboard for DietAgent accounts: MCP connector setup (`/connect`), dashboar
 
 This app targets **Next.js 16** (`next@16`). Auth and session refresh run in **`src/proxy.ts`** (the former `middleware.ts` convention). The build output lists this as **Proxy (Middleware)**.
 
+Browser calls to **`NEXT_PUBLIC_API_URL`** (e.g. `/me/entitlement`) are cross-origin. The API **`ALLOWED_ORIGINS`** env must include every dashboard origin you serve (`https://www.diet-agent.com` and `https://diet-agent.com` count as two different origins).
+
 ### Linting
 
 Next.js 16 no longer ships the `next lint` CLI. This repo uses **ESLint 9** with `eslint.config.mjs` and `npm run lint` / `pnpm run lint` runs `eslint .`.
