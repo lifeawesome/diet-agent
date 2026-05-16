@@ -28,7 +28,21 @@ function LoginForm() {
         setError(err.message)
         return
       }
-      router.push(redirectTo)
+      const trimmed = redirectTo.trim()
+      if (/^https?:\/\//i.test(trimmed)) {
+        try {
+          const dest = new URL(trimmed)
+          if (dest.origin !== window.location.origin) {
+            window.location.assign(trimmed)
+            return
+          }
+          router.push(`${dest.pathname}${dest.search}${dest.hash}`)
+        } catch {
+          router.push('/dashboard')
+        }
+      } else {
+        router.push(trimmed.startsWith('/') ? trimmed : `/${trimmed}`)
+      }
       router.refresh()
     } finally {
       setLoading(false)
